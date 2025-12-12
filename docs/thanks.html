@@ -1,23 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Спасибо! Заявка отправлена</title>
-  <meta name="robots" content="noindex" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Спасибо! Заявка отправлена</title>
 </head>
 <body>
-  <main>
     <h1>Спасибо! Заявка отправлена</h1>
     <p>Я свяжусь с вами в ближайшее время.</p>
-    <p><a href="./">Вернуться на главную</a></p>
-
-    <p id="err" style="display:none;">Похоже, заявка не ушла. Попробуйте ещё раз или напишите в Telegram.</p>
-    <script>
-      if (new URLSearchParams(location.search).get('error') === '1') {
-        document.getElementById('err').style.display = 'block';
-      }
-    </script>
-  </main>
+    <a href="/">Вернуться на главную</a>
 </body>
 </html>
