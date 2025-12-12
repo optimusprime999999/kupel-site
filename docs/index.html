@@ -140,11 +140,25 @@
         </p>
 
         <p>
-          <label>
-            Телефон<br />
-            <input name="phone" inputmode="tel" autocomplete="tel" required />
-          </label>
-        </p>
+            <label>
+                  Телефон<br />
+                      <span aria-hidden="true">+7</span>
+                      <input
+                        name="phone"
+                        inputmode="numeric"
+                        autocomplete="tel-national"
+                        required
+                        pattern="^\d{10}$"
+                        minlength="10"
+                        maxlength="10"
+                        placeholder="9991234567"
+                        title="Введите 10 цифр номера без +7 (например: 9991234567)"
+                      />
+                    </label>
+                  </p>
+<div style="position:absolute;left:-9999px" aria-hidden="true">
+  <label>Не заполняйте это поле <input name="hp" tabindex="-1" autocomplete="off"></label>
+</div>
 
         <p>
           <label>
