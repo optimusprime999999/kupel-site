@@ -5,15 +5,37 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Пластиковая купель для бани — Москва</title>
   <meta name="description" content="Пластиковые купели 725–6000 литров. В наличии в Москве. Без предоплаты. Доставка по МО. Консультация по установке." />
+
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 0; line-height: 1.5; }
+    header, main, footer { max-width: 980px; margin: 0 auto; padding: 16px; }
+    header { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee; }
+    nav a { margin-right: 12px; }
+    section { padding: 28px 0; border-bottom: 1px solid #f0f0f0; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    h2 { margin: 0 0 12px; font-size: 22px; }
+    h3 { margin: 16px 0 8px; font-size: 18px; }
+    .btn { display: inline-block; padding: 10px 14px; border: 1px solid #111; border-radius: 10px; text-decoration: none; }
+    .btn + .btn { margin-left: 10px; }
+    .muted { opacity: .75; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+    article { border: 1px solid #e8e8e8; border-radius: 14px; padding: 14px; }
+    label input, label textarea { width: 100%; max-width: 520px; padding: 10px; border: 1px solid #ddd; border-radius: 10px; margin-top: 6px; }
+    button { padding: 10px 14px; border: 1px solid #111; border-radius: 10px; background: #111; color: #fff; cursor: pointer; }
+    small { display: inline-block; margin-top: 6px; }
+    .error { display:none; color:#b00020; margin-top: 8px; }
+    .selected { margin: 10px 0 0; padding: 10px 12px; border: 1px dashed #bbb; border-radius: 12px; }
+    .skip { position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden; }
+  </style>
 </head>
 
 <body>
-  <a href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Перейти к содержимому</a>
+  <a class="skip" href="#main">Перейти к содержимому</a>
 
   <header>
     <div>
       <strong>Купели из пластика</strong>
-      <nav aria-label="Навигация">
+      <nav aria-label="Навигация" style="margin-top:8px;">
         <a href="#models">Модели</a>
         <a href="#how">Как выбрать</a>
         <a href="#delivery">Доставка</a>
@@ -29,11 +51,11 @@
       <h1 id="hero-title">Пластиковая купель для бани — в наличии в Москве</h1>
       <p>От 725 до 6000 литров • Без предоплаты • Доставка по МО • Консультация по установке</p>
 
-      <p><small>Мы не продаём монтаж и оборудование — только качественные ёмкости. Подскажем, что и как установить.</small></p>
+      <p class="muted"><small>Мы не продаём монтаж и оборудование — только качественные ёмкости. Подскажем, что и как установить.</small></p>
 
       <p>
-        <a href="#models">Выбрать модель</a>
-        <a href="#lead">Получить консультацию</a>
+        <a class="btn" href="#models">Выбрать модель</a>
+        <a class="btn" href="#lead">Получить консультацию</a>
       </p>
     </section>
 
@@ -52,15 +74,36 @@
     <!-- 3) КАТАЛОГ -->
     <section id="models" aria-labelledby="models-title">
       <h2 id="models-title">Модели в наличии</h2>
+      <p class="muted">Нажмите «Оставить заявку» — выбранная модель автоматически подставится в форму.</p>
 
-      <!-- Пример карточки. Потом заменим на реальные данные -->
-      <article aria-label="Модель: Купель 1000 л">
-        <h3>Купель 1000 л</h3>
-        <p><strong>Объём:</strong> 1000 л</p>
-        <p><strong>Габариты:</strong> 140 × 140 × 90 см</p>
-        <p><strong>Цена:</strong> 00 000 ₽</p>
-        <p><a href="#lead">Оставить заявку</a></p>
-      </article>
+      <div class="grid">
+        <!-- Карточка 1 -->
+        <article aria-label="Модель: Купель 725 л">
+          <h3>Купель 725 л</h3>
+          <p><strong>Объём:</strong> 725 л</p>
+          <p><strong>Габариты:</strong> —</p>
+          <p><strong>Цена:</strong> —</p>
+          <p><a class="btn lead-link" href="#lead" data-model="Купель 725 л">Оставить заявку</a></p>
+        </article>
+
+        <!-- Карточка 2 -->
+        <article aria-label="Модель: Купель 1000 л">
+          <h3>Купель 1000 л</h3>
+          <p><strong>Объём:</strong> 1000 л</p>
+          <p><strong>Габариты:</strong> —</p>
+          <p><strong>Цена:</strong> —</p>
+          <p><a class="btn lead-link" href="#lead" data-model="Купель 1000 л">Оставить заявку</a></p>
+        </article>
+
+        <!-- Карточка 3 -->
+        <article aria-label="Модель: Купель 6000 л">
+          <h3>Купель 6000 л</h3>
+          <p><strong>Объём:</strong> 6000 л</p>
+          <p><strong>Габариты:</strong> —</p>
+          <p><strong>Цена:</strong> —</p>
+          <p><a class="btn lead-link" href="#lead" data-model="Купель 6000 л">Оставить заявку</a></p>
+        </article>
+      </div>
     </section>
 
     <!-- 4) КАК ВЫБРАТЬ -->
@@ -81,7 +124,7 @@
     <section id="delivery" aria-labelledby="delivery-title">
       <h2 id="delivery-title">Доставка</h2>
       <p>Основной регион — Москва и Московская область. Стоимость доставки рассчитывается индивидуально.</p>
-      <p><a href="#lead">Узнать стоимость доставки</a></p>
+      <p><a class="btn" href="#lead">Узнать стоимость доставки</a></p>
     </section>
 
     <!-- 6) FAQ -->
@@ -120,7 +163,7 @@
 
       <details>
         <summary>Как происходит оплата?</summary>
-        <p>Без предоплаты (если это правда для тебя — подтвердим и уточним детали формулировки).</p>
+        <p>Без предоплаты (если это правда для тебя — уточни детали при звонке).</p>
       </details>
     </section>
 
@@ -128,37 +171,51 @@
     <section id="lead" aria-labelledby="lead-title">
       <h2 id="lead-title">Оставьте заявку — помогу выбрать купель под вашу задачу</h2>
 
+      <div id="selectedModelBox" class="selected" style="display:none;">
+        <strong>Вы выбрали:</strong> <span id="selectedModelText"></span><br>
+        <small class="muted">Не та модель? Нажмите «Оставить заявку» у нужной карточки — поле обновится.</small>
+      </div>
 
       <form method="post" action="https://script.google.com/macros/s/AKfycbwsSNKm2Y-mFJHdbP7w0w3CFKUg4Oo9jsgN-MgrmkTC8EYEBMxTHeLPdlelZ8SPMWzB/exec">
         <input type="hidden" name="page" value="главная" />
-<input type="hidden" name="model" value="" />
+        <input type="hidden" name="model" id="modelInput" value="" />
+
+        <!-- Honeypot: люди не видят, боты часто заполняют -->
+        <div style="position:absolute;left:-9999px" aria-hidden="true">
+          <label>Не заполняйте <input name="hp" tabindex="-1" autocomplete="off"></label>
+        </div>
+
         <p>
           <label>
             Имя<br />
-            <input name="name" autocomplete="name" required />
+            <input name="name" autocomplete="name" required minlength="2" />
           </label>
         </p>
 
         <p>
-            <label>
-                  Телефон<br />
-                      <span aria-hidden="true">+7</span>
-                      <input
-                        name="phone"
-                        inputmode="numeric"
-                        autocomplete="tel-national"
-                        required
-                        pattern="^\d{10}$"
-                        minlength="10"
-                        maxlength="10"
-                        placeholder="9991234567"
-                        title="Введите 10 цифр номера без +7 (например: 9991234567)"
-                      />
-                    </label>
-                  </p>
-<div style="position:absolute;left:-9999px" aria-hidden="true">
-  <label>Не заполняйте это поле <input name="hp" tabindex="-1" autocomplete="off"></label>
-</div>
+          <label>
+            Телефон<br />
+            <span aria-hidden="true">+7</span>
+            <input
+              name="phone"
+              type="tel"
+              inputmode="numeric"
+              autocomplete="tel-national"
+              required
+              pattern="^\d{10}$"
+              minlength="10"
+              maxlength="10"
+              placeholder="9991234567"
+              title="Введите 10 цифр номера без +7 (например: 9991234567)"
+              aria-describedby="phoneHelp phoneError"
+            />
+          </label>
+          <small id="phoneHelp">Формат: +7 и дальше 10 цифр (например: 9991234567).</small>
+        </p>
+
+        <p id="phoneError" class="error">
+          Номер введён неверно. Введите 10 цифр после +7 (например: 9991234567).
+        </p>
 
         <p>
           <label>
@@ -184,13 +241,13 @@
         <button type="submit">Отправить</button>
       </form>
 
-      <address>
+      <address style="margin-top:18px;">
         <p>Телефон: <a href="tel:+79150914549">+7 915 091-45-49</a></p>
         <p>Email: <a href="mailto:krosokrs@gmail.com">krosokrs@gmail.com</a></p>
         <p>Telegram: <a href="https://t.me/pavgear">@pavgear</a></p>
       </address>
 
-      <nav aria-label="Юридические документы">
+      <nav aria-label="Юридические документы" style="margin-top:10px;">
         <a href="privacy.html">Политика обработки персональных данных</a><br />
         <a href="ads-consent.html">Согласие на рекламную рассылку</a><br />
         <a href="offer.html">Публичная оферта</a>
@@ -200,10 +257,48 @@
 
   <footer>
     <small>© <span id="y">2025</span> Купели из пластика</small>
-    <script>
-      // Не критично: если JS отключён — просто будет 2025
-      document.getElementById('y').textContent = new Date().getFullYear();
-    </script>
   </footer>
+
+  <script>
+    // Год в футере (не критично)
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // 1) Показ ошибки телефона, если сервер вернул ?error=phone
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('error') === 'phone') {
+        var el = document.getElementById('phoneError');
+        if (el) el.style.display = 'block';
+      }
+    })();
+
+    // 2) Подстановка модели в скрытое поле по клику на "Оставить заявку"
+    (function () {
+      var modelInput = document.getElementById('modelInput');
+      var box = document.getElementById('selectedModelBox');
+      var text = document.getElementById('selectedModelText');
+
+      function setModel(val) {
+        if (!modelInput) return;
+        modelInput.value = val || '';
+        if (val) {
+          if (text) text.textContent = val;
+          if (box) box.style.display = 'block';
+        }
+      }
+
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[data-model]') : null;
+        if (!a) return;
+        var m = a.getAttribute('data-model') || '';
+        setModel(m);
+      });
+
+      // Если вдруг кто-то пришёл по ссылке с ?model=...
+      var params = new URLSearchParams(window.location.search);
+      var fromUrl = params.get('model');
+      if (fromUrl) setModel(fromUrl);
+    })();
+  </script>
 </body>
 </html>
