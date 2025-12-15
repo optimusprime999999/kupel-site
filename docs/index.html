@@ -4,60 +4,199 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Пластиковая купель для бани — в наличии в Москве</title>
+    <meta name="description" content="Продажа пластиковых купелей от 725 до 6000 литров — доставка по МО, консультация по установке. Без предоплаты.">
+    <link rel="canonical" href="./">
+    <meta property="og:title" content="Пластиковая купель для бани — в наличии в Москве">
+    <meta property="og:description" content="Продажа пластиковых купелей — от 725 до 6000 литров, доставка по Московской области.">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://script.google.com; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data;">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Пластиковая купель для бани — в наличии в Москве</h1>
-    <p>От 725 до 6000 литров • Без предоплаты • Доставка по МО • Консультация по установке</p>
-    
-    <form id="order-form" action="https://script.google.com/macros/s/AKfycbwsSNKm2Y-mFJHdbP7w0w3CFKUg4Oo9jsgN-MgrmkTC8EYEBMxTHeLPdlelZ8SPMWzB/exec" method="POST">
-        <input type="hidden" name="honeypot" value="" />
-        <label for="name">Имя:</label>
-        <input type="text" id="name" name="name" required><br>
-        
-        <label for="phone">Телефон:</label>
-        <input type="text" id="phone" name="phone" pattern="^7\d{10}$" placeholder="Введите номер с кодом +7" required><br>
-        
-        <label for="comment">Комментарий:</label>
-        <textarea id="comment" name="comment"></textarea><br>
-        
-        <input type="submit" value="Оставить заявку">
-    </form>
+        <a class="skip-link" href="#main">Перейти к контенту</a>
+        <header class="container">
+            <div class="brand">Купели — Москва</div>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="privacy.html">Политика</a>
+                <a href="offer.html">Оферта</a>
+            </nav>
+        </header>
 
-    <script>
-        document.getElementById("order-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            var phone = document.getElementById('phone').value;
-            var name = document.getElementById('name').value;
+        <main id="main" class="container">
+            <h1>Пластиковая купель для бани — в наличии в Москве</h1>
+            <p>От 725 до 6000 литров • Без предоплаты • Доставка по МО • Консультация по установке</p>
 
-            // Проверка на корректность телефона
-            if (!name || !phone) {
-                alert('Пожалуйста, заполните все обязательные поля!');
-                return;
-            }
+            <!-- Блок: список товаров в виде карусели -->
+            <section class="card">
+                <h2>Модели купелей</h2>
+                <div class="carousel" aria-label="Карусель моделей">
+                    <div class="carousel-track" id="carousel-track"></div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn" id="prev">◀</button>
+                        <div class="muted">Листы — прокрутите или используйте стрелки</div>
+                        <button class="carousel-btn" id="next">▶</button>
+                    </div>
+                </div>
+            </section>
 
-            var phonePattern = /^7\d{10}$/;
-            if (!phone.match(phonePattern)) {
-                alert('Введите корректный номер телефона: +7xxxxxxxxxx');
-                return;
-            }
+            <!-- Попап детали товара -->
+            <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+                <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                    <button class="modal-close" id="modal-close">✕</button>
+                    <h3 id="modal-title">Модель</h3>
+                    <div class="gallery" id="modal-gallery"></div>
+                    <div class="specs" id="modal-specs"></div>
+                    <div id="modal-price" style="font-weight:700; margin-top:8px"></div>
+                    <button class="order-btn" id="modal-order">Заказать</button>
+                </div>
+            </div>
 
-            var formData = new FormData(this);
+            <!-- Модальное окно заказа (универсальная форма) -->
+            <div class="modal-backdrop" id="order-backdrop" aria-hidden="true">
+                <div class="modal" role="dialog" aria-modal="true" aria-labelledby="order-title">
+                    <button class="modal-close" id="order-close">✕</button>
+                    <h3 id="order-title">Заказать купель</h3>
+                    <form id="order-form" action="https://script.google.com/macros/s/AKfycbwsSNKm2Y-mFJHdbP7w0w3CFKUg4Oo9jsgN-MgrmkTC8EYEBMxTHeLPdlelZ8SPMWzB/exec" method="POST">
+                        <input type="hidden" name="hp" value="" class="honeypot" aria-hidden="true" tabindex="-1" />
+                        <input type="hidden" name="model" id="order-model" value="" />
+                        <label for="order-name">Имя</label>
+                        <input type="text" id="order-name" name="name" required>
+                        <label for="order-phone">Телефон</label>
+                        <input type="tel" id="order-phone" name="phone" pattern="^(?:\+7|7)\d{10}$" inputmode="tel" placeholder="+7xxxxxxxxxx" required>
+                        <input type="submit" value="Отправить заявку">
+                        <div id="order-status" class="form-status" role="status" aria-live="polite"></div>
+                    </form>
+                </div>
+            </div>
+        </main>
 
-            fetch(this.action, {
-                method: 'POST',
-                body: formData
-            }).then(response => response.json())
-            .then(response => {
-                if (response.status === 'success') {
-                    window.location.href = 'https://optimusprime999999.github.io/kupel-site/thanks.html';
-                } else {
-                    alert('Ошибка при отправке заявки. Попробуйте снова.');
+        <footer class="container">
+            <div>Контакты: <a href="mailto:krosokrs@gmail.com">krosokrs@gmail.com</a> • <a href="tel:+7">+7</a></div>
+            <div><a href="ads-consent.html">Согласие на рассылку</a> · <a href="thanks.html">Спасибо</a></div>
+          </footer>
+
+        <script>
+            (function(){
+                /* Список продуктов — из описания пользователя */
+                var products = [
+                    {id:'p725', title:'725 л', volume:'725 л', top:'1.30 м', bottom:'1.00 м', depth:'0.62 м', price:'10000 р', images:[]},
+                    {id:'p880', title:'880 л', volume:'880 л', top:'1.20 м', bottom:'0.85 м', depth:'1.20 м', price:'13000 р', images:[]},
+                    {id:'p1200', title:'1200 л', volume:'1200 л', top:'1.35 м', bottom:'1.17 м', depth:'1.00 м', price:'14000 р', images:[]},
+                    {id:'p2500', title:'2500 л', volume:'2500 л', top:'2.00 м', bottom:'1.60 м', depth:'1.05 м', price:'27000 р', images:[]},
+                    {id:'p3000', title:'3000 л', volume:'3000 л', top:'2.35 м', bottom:'1.95 м', depth:'0.80 м', price:'30000 р', images:[]},
+                    {id:'p6000', title:'6000 л', volume:'6000 л', top:'2.35 м', bottom:'1.95 м', depth:'1.40 м', price:'43500 р', images:[]},
+                    {id:'pVH2', title:'VH2 2400 л (с сидением)', volume:'2400 л', top:'2.10 м', seatDiameter:'1.95 м', depth:'1.20 м', seatHeight:'0.48 м', seatDepth:'0.38 м', price:'32000 р', images:[]},
+                    {id:'p8gon', title:'Восьмигранный 5000 л', volume:'5000 л', topCorner:'2580 мм', topEdge:'2374 мм', bottomCorner:'2190 мм', height:'1.25 м', price:'42000 р', images:[]}
+                ];
+
+                var track = document.getElementById('carousel-track');
+                var prevBtn = document.getElementById('prev');
+                var nextBtn = document.getElementById('next');
+
+                // Вспомогательный placeholder SVG
+                function placeholderSVG(text){
+                    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="240"><rect width="100%" height="100%" fill="#f3f3f3"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="#888" font-size="20">'+text+'</text></svg>';
+                    return 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
                 }
-            });
-        });
 
-        // Honeypot для ботов
-        document.querySelector("input[name='honeypot']").setAttribute('style', 'display:none');
-    </script>
+                // Рендер карточек
+                products.forEach(function(p){
+                    var el = document.createElement('article');
+                    el.className = 'carousel-item';
+                    el.setAttribute('tabindex', '0');
+                    var imgSrc = placeholderSVG(p.title);
+                    el.innerHTML = '<img src="'+imgSrc+'" alt="'+p.title+'">'
+                        +'<h4>'+p.title+'</h4>'
+                        +'<div class="muted">Объем: '+p.volume+'</div>'
+                        +'<div style="margin-top:8px"><button class="order-small" data-id="'+p.id+'">Подробнее</button></div>';
+                    track.appendChild(el);
+                });
+
+                // Карусель прокрутка
+                var index = 0;
+                function scrollToIndex(i){
+                    var items = track.children;
+                    if(items.length===0) return;
+                    if(i<0) i = items.length-1;
+                    if(i>=items.length) i = 0;
+                    index = i;
+                    var item = items[i];
+                    track.scrollTo({left: item.offsetLeft - 12, behavior: 'smooth'});
+                }
+                prevBtn.addEventListener('click', function(){ scrollToIndex(index-1); });
+                nextBtn.addEventListener('click', function(){ scrollToIndex(index+1); });
+
+                // Автопрокрутка
+                setInterval(function(){ scrollToIndex(index+1); }, 6000);
+
+                // Модал детализации
+                var modalBackdrop = document.getElementById('modal-backdrop');
+                var modalTitle = document.getElementById('modal-title');
+                var modalGallery = document.getElementById('modal-gallery');
+                var modalSpecs = document.getElementById('modal-specs');
+                var modalPrice = document.getElementById('modal-price');
+                var modalOrderBtn = document.getElementById('modal-order');
+                var modalClose = document.getElementById('modal-close');
+
+                function openProduct(id){
+                    var p = products.find(function(x){return x.id===id});
+                    if(!p) return;
+                    modalTitle.textContent = p.title;
+                    modalGallery.innerHTML = '';
+                    // показаем до 3 изображений-плейсхолдеров
+                    for(var i=0;i<3;i++){ var img = document.createElement('img'); img.src = placeholderSVG(p.title + ' фото '+(i+1)); modalGallery.appendChild(img); }
+                    modalSpecs.innerHTML = '';
+                    for(var k in p){ if(['id','title','images','price'].indexOf(k)===-1){ var d = document.createElement('div'); d.textContent = (k+': '+p[k]); modalSpecs.appendChild(d); }}
+                    modalPrice.textContent = 'Цена: ' + p.price;
+                    modalOrderBtn.dataset.id = p.id;
+                    modalBackdrop.classList.add('show'); modalBackdrop.setAttribute('aria-hidden','false');
+                }
+
+                track.addEventListener('click', function(e){
+                    var btn = e.target.closest('button.order-small');
+                    if(btn){ openProduct(btn.dataset.id); }
+                });
+
+                modalClose.addEventListener('click', function(){ modalBackdrop.classList.remove('show'); modalBackdrop.setAttribute('aria-hidden','true'); });
+
+                // Заказ из модального окна — откроем форму заказа и префиллим модель
+                var orderBackdrop = document.getElementById('order-backdrop');
+                var orderClose = document.getElementById('order-close');
+                var orderModel = document.getElementById('order-model');
+                var orderForm = document.getElementById('order-form');
+                var orderStatus = document.getElementById('order-status');
+
+                modalOrderBtn.addEventListener('click', function(){
+                    var id = this.dataset.id; var p = products.find(function(x){return x.id===id});
+                    orderModel.value = p ? (p.title+' — '+p.price) : id;
+                    modalBackdrop.classList.remove('show'); modalBackdrop.setAttribute('aria-hidden','true');
+                    orderBackdrop.classList.add('show'); orderBackdrop.setAttribute('aria-hidden','false');
+                });
+
+                track.addEventListener('keydown', function(e){ if(e.key==='Enter'){ var el = document.activeElement; var btn = el.querySelector('button.order-small'); if(btn) openProduct(btn.dataset.id); }});
+
+                orderClose.addEventListener('click', function(){ orderBackdrop.classList.remove('show'); orderBackdrop.setAttribute('aria-hidden','true'); });
+
+                // Обработка отправки заказа (универсальная форма)
+                orderForm.addEventListener('submit', function(ev){
+                    ev.preventDefault();
+                    var hp = orderForm.querySelector('input[name="hp"]').value; if(hp){ orderStatus.textContent='Ошибка отправки.'; orderStatus.style.color='crimson'; return; }
+                    var name = document.getElementById('order-name').value.trim();
+                    var phone = document.getElementById('order-phone').value.trim();
+                    if(!name || !phone){ orderStatus.textContent='Заполните имя и телефон.'; orderStatus.style.color='crimson'; return; }
+                    var phoneRe = /^(?:\+7|7)\d{10}$/; if(!phoneRe.test(phone)){ orderStatus.textContent='Введите корректный номер +7xxxxxxxxxx'; orderStatus.style.color='crimson'; return; }
+
+                    orderStatus.textContent='Отправка...'; orderStatus.style.color='inherit';
+                    var fd = new FormData(orderForm);
+                    fetch(orderForm.action, { method:'POST', body: fd })
+                        .then(function(resp){ if(!resp.ok) throw new Error('network'); return resp.json().catch(function(){ return {}; }); })
+                        .then(function(json){ if(json && (json.status==='success' || json.result==='success')){ window.location.href = 'thanks.html'; } else { if(Object.keys(json).length===0) window.location.href='thanks.html'; else { orderStatus.textContent='Ошибка отправки'; orderStatus.style.color='crimson'; } } })
+                        .catch(function(){ orderStatus.textContent='Ошибка сети. Попробуйте позже.'; orderStatus.style.color='crimson'; });
+                });
+
+            })();
+        </script>
 </body>
 </html>

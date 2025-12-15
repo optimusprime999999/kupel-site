@@ -1,0 +1,66 @@
+/* Общие стили сайта */
+:root{
+  --bg:#ffffff;
+  --text:#111111;
+  --muted:#6b6b6b;
+  --accent:#0b5fff;
+  --border:#e6e6e6;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{font-family:system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; margin:0; color:var(--text); background:var(--bg); line-height:1.45}
+.container{max-width:920px; margin:0 auto; padding:20px}
+.skip-link{position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden}
+.skip-link:focus{position:static; width:auto; height:auto; padding:8px 12px; background:#000; color:#fff; border-radius:6px}
+header{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0}
+header .brand{font-weight:700}
+nav a{margin-left:12px; text-decoration:none; color:var(--muted)}
+main h1{margin-top:0}
+.card{border:1px solid var(--border); border-radius:12px; padding:20px; background: #fff}
+.muted{color:var(--muted)}
+a.btn{display:inline-block; padding:10px 14px; border:1px solid #111; border-radius:10px; text-decoration:none; color:inherit}
+
+/* Формы */
+form{margin-top:12px}
+label{display:block; font-weight:600; margin:12px 0 6px}
+input[type="text"], input[type="tel"], textarea{width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:8px; font-size:15px}
+textarea{min-height:100px}
+input[type="submit"], button[type="submit"]{background:var(--accent); color:#fff; border:none; padding:10px 14px; border-radius:8px; cursor:pointer}
+input[type="submit"]:hover{opacity:.95}
+input[type="submit"]:focus, a:focus, button:focus{outline:3px solid rgba(11,95,255,0.18); outline-offset:2px}
+
+/* Honeypot скрытие для людей, видимо только для скринридеров */
+.honeypot{position:absolute !important; left:-9999px !important; width:1px !important; height:1px !important; overflow:hidden !important}
+
+.form-status{margin-top:12px}
+.sr-only{position: absolute !important; width:1px !important; height:1px !important; padding:0 !important; margin:-1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; white-space: nowrap !important; border:0 !important}
+
+/* Стили из 404 для совместимости */
+.wrap{max-width:720px; margin:0 auto}
+.btn{display:inline-block; padding:10px 14px; border:1px solid #111; border-radius:10px; text-decoration:none}
+
+footer{margin-top:28px; padding:18px 0; border-top:1px solid var(--border); color:var(--muted); font-size:14px}
+
+@media (max-width:520px){.container{padding:14px}.brand{font-size:16px}}
+
+/* Карусель продуктов */
+.carousel{position:relative; margin:18px 0}
+.carousel-track{display:flex; gap:12px; overflow:hidden}
+.carousel-item{min-width:220px; max-width:260px; flex:0 0 auto; border:1px solid var(--border); border-radius:10px; padding:12px; background:#fff}
+.carousel-item img{width:100%; height:140px; object-fit:cover; border-radius:8px}
+.carousel-controls{display:flex; justify-content:space-between; align-items:center; margin-top:10px}
+.carousel-btn{background:#fff; border:1px solid var(--border); padding:6px 10px; border-radius:8px; cursor:pointer}
+
+/* Модальные окна */
+.modal-backdrop{position:fixed; inset:0; background:rgba(0,0,0,0.45); display:none; align-items:center; justify-content:center; z-index:1000}
+.modal{background:#fff; max-width:900px; width:94%; border-radius:12px; padding:18px; box-shadow:0 10px 30px rgba(0,0,0,.2); max-height:90vh; overflow:auto}
+.modal .gallery{display:flex; gap:8px; overflow-x:auto; margin-bottom:12px}
+.modal .gallery img{width:160px; height:120px; object-fit:cover; border-radius:8px}
+.modal .specs{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin:10px 0}
+.modal .order-btn{display:inline-block; margin-top:12px}
+.modal-close{position:absolute; right:12px; top:12px; background:#fff; border:1px solid var(--border); border-radius:8px; padding:6px}
+
+.show{display:flex !important}
+
+@media (max-width:640px){.carousel-item{min-width:180px}.modal .gallery img{width:120px; height:90px}}
+
